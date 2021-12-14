@@ -1,6 +1,5 @@
 (sym_lib_table
   (lib (name Connector_Gameboy)(type Legacy)(uri ${KIPRJMOD}/lib/Connector_Gameboy.lib)(options "")(descr ""))
-  (lib (name dk_Interface-Controllers)(type Legacy)(uri ${KIPRJMOD}/lib/dk_Interface-Controllers.lib)(options "")(descr ""))
   (lib (name Logic_LevelTranslator)(type Legacy)(uri ${KIPRJMOD}/lib/Logic_LevelTranslator.lib)(options "")(descr ""))
   (lib (name Memory_EEPROM)(type Legacy)(uri ${KIPRJMOD}/lib/Memory_EEPROM.lib)(options "")(descr ""))
   (lib (name sn74lvc4245a)(type Legacy)(uri ${KIPRJMOD}/lib/sn74lvc4245a.lib)(options "")(descr ""))
