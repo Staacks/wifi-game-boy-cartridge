@@ -3,7 +3,9 @@ A WiFi cartridge for the original Game Boy.
 
 This open source and open hardware Game Boy cartridge uses an ESP8266 to allow WiFi access for custom Game Boy code. First demos include accessing Wikipedia articles from the Game Boy.
 
-Details and instructions can be found on https://there.oughta.be/a/wifi-game-boy-cartridge
+Details and instructions can be found on https://there.oughta.be/a/wifi-game-boy-cartridge and an overview is given in the following video:
+
+[![Youtube Video: WiFi Game Boy Cartridge](https://img.youtube.com/vi/QS4fzElm8zk/0.jpg)](https://youtu.be/QS4fzElm8zk)
 
 If you have pull-requests, bug reports or want to contribute new case designs, please do not hesitate to open an issue. For generic discussions, "show and tell" and if you are looking for support for something that is not a problem in the code here, I would recommend [r/thereoughtabe on reddit](https://www.reddit.com/r/thereoughtabe/).
 
