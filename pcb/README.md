@@ -4,6 +4,8 @@ There are two known possible issues in this design, which you should be aware of
 * Some of the 3V3 lines in the top left corner are done es part of an auto-fill area. This works perfectly in KiCad, is properly exported to Gerber files and also passes bug tests with the net list. However, when I ordered from aisler.net where you upload the KiCad file instead of Gerber files, the smaller 3V3 connections were lost. Since this worked in KiCad itself, I think it is a bug in Aisler's renderer, but unfortunately, they did not reply to my questions about this issue.
 * I heavily use vias in solder pads. I read that this is bad practice as it might be a problem for automatic manufacturing processes, but fine for hand-soldering. As I did the latter I did not notice any problems, but you should be aware if you use a different process.
 
+![Preview of the schematic](wifi-gb-cart-schematic-preview.png)
+
 # Licenses
 This design is licensed under the GNU General Public License 3.0. See LICENSE file in this directory.
 
