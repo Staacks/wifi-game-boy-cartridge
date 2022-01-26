@@ -7,6 +7,10 @@ Details and instructions can be found on https://there.oughta.be/a/wifi-game-boy
 
 [![Youtube Video: WiFi Game Boy Cartridge](https://img.youtube.com/vi/QS4fzElm8zk/0.jpg)](https://youtu.be/QS4fzElm8zk)
 
+Also, another article and video have been published on streaming video through this cartridge, which can be found at https://there.oughta.be/gta5-for-the-game-boy and in this video:
+
+[![Youtube Video: Playing GTA5 on the original Game Boy](https://img.youtube.com/vi/pX1opw_gsBs/0.jpg)](https://youtu.be/pX1opw_gsBs)
+
 If you have pull-requests, bug reports or want to contribute new case designs, please do not hesitate to open an issue. For generic discussions, "show and tell" and if you are looking for support for something that is not a problem in the code here, I would recommend [r/thereoughtabe on reddit](https://www.reddit.com/r/thereoughtabe/).
 
 <a href="https://www.buymeacoffee.com/there.oughta.be" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-blue.png" alt="Buy Me A Coffee" height="47" width="174" ></a>
