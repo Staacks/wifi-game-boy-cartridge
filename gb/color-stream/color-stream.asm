@@ -169,39 +169,26 @@ MACRO ReadPalettes
 
 
 MACRO SendJoypadState
+	ld	hl, $ff00
 	ld	a, %00100000	; Check button keys
-	ld [$ff00], a
-	ld	a, [$ff00]
-	ld	a, [$ff00]
-	ld	a, [$ff00]
-	ld	a, [$ff00]
-	ld	a, [$ff00]
-	ld	a, [$ff00]
-	ld	a, [$ff00]
-	ld	a, [$ff00]
-	ld	a, [$ff00]
-	ld	a, [$ff00]
-	ld	a, [$ff00]
-	ld	a, [$ff00]
+	ld [hl], a
+	ld	a, [hl]
+    REPT 8
+	    ld	c, [hl]
+        or c
+    ENDR
 	cpl
 	and	%00001111
 	swap	a
 	ld	b, a
 
 	ld	a, %00010000	; Check direction keys
-	ld [$ff00], a
-	ld	a, [$ff00]
-	ld	a, [$ff00]
-	ld	a, [$ff00]
-	ld	a, [$ff00]
-	ld	a, [$ff00]
-	ld	a, [$ff00]
-	ld	a, [$ff00]
-	ld	a, [$ff00]
-	ld	a, [$ff00]
-	ld	a, [$ff00]
-	ld	a, [$ff00]
-	ld	a, [$ff00]
+	ld [hl], a
+	ld	a, [hl]
+    REPT 8
+	    ld	c, [hl]
+        or c
+    ENDR
 	cpl
 	and %00001111
 	or b
@@ -262,25 +249,24 @@ LINEADDR = LINEADDR + 32
     ld	a, %10010001	;LCD on, BG Tile Data 0x8000, BG ON
 	ld	[$ff40], a
 
+    ; The CGB and especially the Analogue Pocket starts a bit too fast for the ESP8266 to connect to WiFi first. So, let's wait six seconds (360 vblanks).
+	ld	d, 180
+startDelay:
+	WaitForMode %00000001		;Wait for vblank
+	WaitForMode %00000011		;Wait for end of vblank
+	WaitForMode %00000001		;Wait for vblank
+	WaitForMode %00000011		;Wait for end of vblank
+	ld a, d
+	dec d
+    dec a
+	jp  nz, startDelay
+
     ; Now let's see if we are on a CGB or a DMG
 	ld	a, b
 	cp  $11
 	jp	nz, loop        ; DMG
 
     ; We are in CGB mode.
-
-    ; The CGB starts a bit too fast for the ESP8266 to connect to WiFi first. So, let's wait six seconds (360 vblanks).
-	ld	b, 180
-startDelay:
-	WaitForMode %00000001		;Wait for vblank
-	WaitForMode %00000011		;Wait for end of vblank
-	WaitForMode %00000001		;Wait for vblank
-	WaitForMode %00000011		;Wait for end of vblank
-	ld a, b
-	dec b
-    dec a
-	jp  nz, startDelay
-
 
     NotifyCGBtoESP      ; Let the ESP know that we are on a CGB    
 
@@ -332,7 +318,7 @@ loop: ; DMG mode
 	jp  nz, lcdLoop
 
 	; Send joypad state. This also triggers the buffer swap and next send cycle on the ESP
-	SendJoypadState 10
+	SendJoypadState 8
 
 jp	loop
 
@@ -419,7 +405,7 @@ cgbloop: ; CGB mode
 
 	; Send joypad state. This also triggers the buffer swap and next send cycle on the ESP
     IgnoreHBlank ;Wait a moment to make sure the ESP won't miss it after the last transferred tile
-	SendJoypadState 20
+	SendJoypadState 9
 
 jp	cgbloop
 

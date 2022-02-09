@@ -29,6 +29,7 @@ volatile bool cgb = false; //True if we have been notified that this is a Game B
 volatile int nextBlockEnd = 16; //In CGB mode, we have varying block sizes. This keeps track of when the next one ends.
 
 void setup() {
+  WiFi.setOutputPower(0);
   outbufferFront = (uint8_t*)malloc(bufferSizeCGB);
   outbufferBack = (uint8_t*)malloc(bufferSizeCGB);
   for (int i = 0; i < bufferSizeCGB; i++)
@@ -100,7 +101,7 @@ ICACHE_RAM_ATTR void espRdFall() {
     
     //Wait for rising edge with a timeout, so this does not block forever if we miss it
     clk = asm_ccount();
-    while ((uint32_t)(asm_ccount() - clk) < 1400) {
+    while ((uint32_t)(asm_ccount() - clk) < 2000) {
       if (GPI & pinEspRdMask)
         break;
     }
@@ -155,7 +156,7 @@ ICACHE_RAM_ATTR void espClkFall() {
     return;
 
   //Wait for rising edge with a timeout, so this does not block forever if we miss it
-  while ((uint32_t)(asm_ccount() - clk) < 1400) {
+  while ((uint32_t)(asm_ccount() - clk) < 2000) {
     if (GPI & pinEspClkMask)
       break;
   }
@@ -226,16 +227,16 @@ void handleDataFromTcp() {
     return;
 
   int bufferSize = cgb ? bufferSizeCGB : bufferSizeDMG;
-  int minAvail = min(32, bufferSize - outBackIndex);
-  while (client.available() >= minAvail) {
-    client.read(outbufferBack + outBackIndex, minAvail);
-    outBackIndex += minAvail;
+  int avail = client.available();
+  if (avail >= 64) {
+    int readCount = min(avail, bufferSize - outBackIndex);
+    client.read(outbufferBack + outBackIndex, readCount);
+    outBackIndex += readCount;
     if (outBackIndex >= bufferSize) {
       outBackIndex = 0;
       outBackFilled = true;
       return;
     }
-    minAvail = min(32, bufferSize - outBackIndex);
   }
 }
 
