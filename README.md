@@ -15,6 +15,10 @@ If you have pull-requests, bug reports or want to contribute new case designs, p
 
 <a href="https://www.buymeacoffee.com/there.oughta.be" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-blue.png" alt="Buy Me A Coffee" height="47" width="174" ></a>
 
+# Important notice
+
+Please read the resources above carefully and understand the limitations of this project. The brown-out issues have never been resolved and this is more a prove of concept than a consumer product. If you still want to try it yourself, please also note that rgbasm has changed a lot since this project was written and that its current version is no longer compatible with the asm files provided here. You may need to revert to rgbasm 0.5.2 to build them. 
+
 # Short overview of the demos
 
 As the number of demos keeps growing and some of them are just a quick experiment, you can find a few notes here:
